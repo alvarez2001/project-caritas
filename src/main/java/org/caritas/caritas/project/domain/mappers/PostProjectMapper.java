@@ -17,6 +17,7 @@ public class PostProjectMapper {
         Project project = new Project();
 
         project.setName(postProjectDto.getName());
+        project.setCode(postProjectDto.getCode());
         project.setTypeMoney(postProjectDto.getTypeMoney());
         project.setAvailable(postProjectDto.getRequest());
         project.setRequest(postProjectDto.getRequest());

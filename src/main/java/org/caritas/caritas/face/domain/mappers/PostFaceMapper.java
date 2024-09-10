@@ -17,7 +17,7 @@ public class PostFaceMapper {
 
         entity.setCode(dto.getCode());
         entity.setStatus(dto.getStatus());
-        entity.setTotal(dto.getTotal());
+        entity.setTotal(0F);
         entity.setProjectId(dto.getProjectId());
 
         return entity;

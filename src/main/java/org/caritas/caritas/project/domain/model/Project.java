@@ -19,6 +19,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+
+import org.caritas.caritas.face.domain.model.Face;
 import org.caritas.caritas.item.domain.model.Item;
 
 @Entity
@@ -32,6 +34,9 @@ public class Project {
 
     @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "code", nullable = true)
+    private String code;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_money", nullable = false)
@@ -49,6 +54,9 @@ public class Project {
 
     @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "project")
     private List<Item> items;
+
+    @OneToMany(cascade = { CascadeType.PERSIST }, mappedBy = "project")
+    private List<Face> faces;
 
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)

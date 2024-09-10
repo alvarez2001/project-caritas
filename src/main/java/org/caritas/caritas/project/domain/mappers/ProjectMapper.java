@@ -17,6 +17,7 @@ public class ProjectMapper {
         GetProjectDto getProjectDto = new GetProjectDto();
         getProjectDto.setId(project.getId());
         getProjectDto.setName(project.getName());
+        getProjectDto.setCode(project.getCode());
         getProjectDto.setTypeMoney(project.getTypeMoney());
         getProjectDto.setAvailable(project.getAvailable());
         getProjectDto.setRequest(project.getRequest());

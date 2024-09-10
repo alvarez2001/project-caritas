@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class GetProjectDto implements Serializable {
     Long id;
     String name;
+    String code;
     TypeMoney typeMoney;
     Float available;
     Float request;

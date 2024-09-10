@@ -21,6 +21,11 @@ public class PostProjectDto implements Serializable {
         String name;
 
         @NotNull
+        @NotBlank
+        @Size(min = 1, max = 255)
+        String code;
+
+        @NotNull
         @ValidEnum(enumClass = TypeMoney.class, message = "Moneda inválida")
         TypeMoney typeMoney;
 

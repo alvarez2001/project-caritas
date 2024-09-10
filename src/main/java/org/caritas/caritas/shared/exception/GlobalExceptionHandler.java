@@ -3,6 +3,7 @@ package org.caritas.caritas.shared.exception;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.caritas.caritas.item.domain.exception.ExceedsProjectRequestException;
 import org.caritas.caritas.shared.dto.ApiError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,6 +39,8 @@ public class GlobalExceptionHandler {
             return this.methodArgumentNotValidException(methodArgumentNotValidException, request, timestamp);
         } else if (exception instanceof ResourceNotFoundException resourceNotFoundException) {
             return this.resourceNotFoundException(resourceNotFoundException, request, timestamp);
+        } else if (exception instanceof ExceedsProjectRequestException exceedsProjectRequestException) {
+            return this.exceedsProjectRequestException(exceedsProjectRequestException, request, timestamp);
         } else {
             return this.genericResponse(exception, request, timestamp);
         }
@@ -133,4 +136,22 @@ public class GlobalExceptionHandler {
 
     }
 
+    private ResponseEntity<ApiError> exceedsProjectRequestException(ExceedsProjectRequestException exception,
+            HttpServletRequest request,
+            LocalDateTime timestamp) {
+
+        int httpStatus = HttpStatus.UNPROCESSABLE_ENTITY.value();
+
+        ApiError apiError = new ApiError(
+                httpStatus,
+                request.getRequestURL().toString(),
+                request.getMethod(),
+                "Se ha excedido el valor maximo del solicitado en el proyecto",
+                exception.getMessage(),
+                timestamp,
+                null);
+
+        return ResponseEntity.status(httpStatus).body(apiError);
+
+    }
 }
